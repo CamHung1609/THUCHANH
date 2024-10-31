@@ -5,13 +5,16 @@ import {
   getUserPage,
   getViewPage,
   getAddUserPage,
+  getLoginPage,
   addUser,
   getUpdateUserPage,
   updateUser,
   removeUser,
+  login,
 } from "../Controller/UserController";
 const initWebRoute = (app) => {
   app.get("/", getHomePage);
+  app.get("/login", getLoginPage);
   app.get("/about", getAboutPage);
   app.get("/contact", getContactPage);
   app.get("/user", getUserPage);

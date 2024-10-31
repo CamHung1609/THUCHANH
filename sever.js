@@ -4,7 +4,18 @@ import bodyParser from "body-parser";
 
 import viewEngine from "./viewEngine";
 import initWebRoutes from "./routes";
+import session from "express-session";
+
 const app = express();
+
+app.use(
+  session({
+    secret: "camhung12345",
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 viewEngine(app);
 app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT;

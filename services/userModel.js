@@ -18,7 +18,7 @@ const addUserModel = async (data) => {
     "INSERT INTO `users` VALUES (?,?,?,?,?,?)",
     [
       data.username,
-      data.password,
+      data.hashPW,
       data.fullname,
       data.address,
       data.sex,

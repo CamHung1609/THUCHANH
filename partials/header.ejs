@@ -22,15 +22,21 @@
 
         </ul>
       </div>
+      <% if (userLogin) { %>
       <div class="logined">
         <h6>
-          Ten nguoi dung
+          <%= userLogin.fullname %>
         </h6>
-        <a href="">ĐĂNG XUẤT</a>
+        <a href="/logout">ĐĂNG XUẤT</a>
       </div>
+      <% } else { %>
+
       <div class="logined">
         <a href="/login">ĐĂNG NHẬP</a>
       </div>
+
+      <%}%>
+      
     </div>
   </nav>
 </header>

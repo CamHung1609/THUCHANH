@@ -15,7 +15,7 @@ const getUser = async (username) => {
 
 const addUserModel = async (data) => {
   const [row, field] = await pool.execute(
-    "INSERT INTO `users` VALUES (?,?,?,?,?,?)",
+    "INSERT INTO `users` VALUES (?,?,?,?,?,?,?)",
     [
       data.username,
       data.hashPW,
@@ -23,6 +23,7 @@ const addUserModel = async (data) => {
       data.address,
       data.sex,
       data.email,
+      1,
     ]
   );
   return row;

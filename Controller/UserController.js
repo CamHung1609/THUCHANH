@@ -92,6 +92,15 @@ const login = async (req, res) => {
     res.redirect("/login");
     return;
   }
+  req.session.userLogin = row[0];
+  req.session.isAuth = true;
+  req.session.role = row[0].role;
+  res.redirect("/user");
+};
+
+const logout = (req, res) => {
+  req.session.destroy();
+  res.redirect("/login");
 };
 
 export {
@@ -107,4 +116,5 @@ export {
   updateUser,
   removeUser,
   login,
+  logout,
 };

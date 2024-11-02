@@ -1,33 +1,39 @@
 <h1>XEM DANH SACH NGUOI DUNG</h1>
 <div class="container">
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">STT</th>
-      <th scope="col">Username</th>
-      <th scope="col">Fullname</th>
-      <th scope="col">Address</th>
-      <th scope="col">Setting</th>
-      <th scope="col"><a href="/user/AddUser" class="btn btn-primary">Them</a></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% for (let i = 0; i < data.users.length; i++) { %>
-    <tr>
-      <th scope="row"><%= i+1 %></th>
-      <td><%= data.users[i].username %></td>
-      <td><%= data.users[i].fullname %></td>
-      <td><%= data.users[i].address %></td>
-      <td>
-        <a href="user/view/<%= data.users[i].username %>" class="btn btn-primary">xem</a>
-        <a href="user/update/<%= data.users[i].username %>" class="btn btn-success">sua</a>
-        <form action="/api/removeUser" method="post" class="d-inline-block">
-          <input type="hidden" name="username" value="<%= data.users[i].username %>">
-          <button type="submit" class="btn btn-danger">xoa</button>
-        </form>
-      </td>
-    </tr>
-    <% } %>
-  </tbody>
-</table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">STT</th>
+        <th scope="col">Username</th>
+        <th scope="col">Fullname</th>
+        <th scope="col">Address</th>
+        <th scope="col">Setting</th>
+        <th scope="col"><a href="/user/AddUser" class="btn btn-primary">Them</a></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let i = 0; i < data.users.length; i++) { %>
+      <tr>
+        <th scope="row"><%= i+1 %></th>
+        <td><%= data.users[i].username %></td>
+        <td><%= data.users[i].fullname %></td>
+        <td><%= data.users[i].address %></td>
+
+        <% if (userLogin && (userLogin.username === data.users[i].username ||
+        userLogin.role === 0)) { %>
+
+        <td>
+          <a href="user/view/<%= data.users[i].username %>" class="btn btn-primary">xem</a>
+          <a href="user/update/<%= data.users[i].username %>" class="btn btn-success">sua</a>
+          <form action="/api/removeUser" method="post" class="d-inline-block">
+            <input type="hidden" name="username" value="<%= data.users[i].username %>">
+            <button type="submit" class="btn btn-danger">xoa</button>
+          </form>
+        </td>
+      </tr>
+      <% }%>
+
+      <% } %>
+    </tbody>
+  </table>
 </div>

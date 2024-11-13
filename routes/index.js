@@ -13,6 +13,7 @@ import {
   login,
   logout,
 } from "../Controller/UserController";
+import { getNhom, getSanPham } from "../Controller/ApiController";
 
 import auth from "../middlewares/auth";
 
@@ -37,5 +38,10 @@ const initWebRoute = (app) => {
   app.post("/api/addUser", addUser);
   app.post("/api/updateUser", auth.isMineOrAdmin, updateUser);
   app.post("/api/removeUser", removeUser);
+
+  // api buoi 2
+
+  app.get("/api/getNhom", getNhom);
+  app.get("/api/getSanPham", getSanPham);
 };
 export default initWebRoute;

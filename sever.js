@@ -8,8 +8,14 @@ import viewEngine from "./viewEngine";
 import initWebRoutes from "./routes";
 import session from "express-session";
 
+import sequelize from "./models/index.js";
+
 const app = express();
 
+// Kết nối với cơ sở dữ liệu
+sequelize.sync({ force: false }).then(() => {
+  console.log("Database & tables created!");
+});
 const redisClient = createClient({
   password: "ZnYkLrXuLJrlF0UWEKQtyKpp4m8gvx0V",
   socket: {

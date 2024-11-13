@@ -1,5 +1,6 @@
 import userModel from "../services/userModel";
 import { hashSync, compareSync } from "bcrypt";
+import User from "../models/user.js";
 // var salt = bcrypt.genSaltSync(10);
 // var hash = bcrypt.hashSync("B4c0//", salt);
 
@@ -62,8 +63,15 @@ const getLoginPage = (req, res) => {
 const addUser = async (req, res) => {
   const data = req.body;
   const hashPW = hashSync(data.password, 10);
-  data.hashPW = hashPW;
-  await userModel.addUserModel(data);
+  // await userModel.addUserModel(data);
+  await User.create({
+    username: data.username,
+    password: hashPW,
+    fullname: data.fullname,
+    address: data.address,
+    sex: data.sex,
+    email: data.email,
+  });
   res.redirect("/user");
 };
 

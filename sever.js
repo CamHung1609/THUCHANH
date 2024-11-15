@@ -9,6 +9,7 @@ import initWebRoutes from "./routes";
 import session from "express-session";
 
 import sequelize from "./models/index.js";
+import cors from "cors";
 
 const app = express();
 
@@ -16,6 +17,9 @@ const app = express();
 sequelize.sync({ force: false }).then(() => {
   console.log("Database & tables created!");
 });
+
+app.use(cors());
+
 const redisClient = createClient({
   password: "ZnYkLrXuLJrlF0UWEKQtyKpp4m8gvx0V",
   socket: {

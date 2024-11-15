@@ -13,7 +13,12 @@ import {
   login,
   logout,
 } from "../Controller/UserController";
-import { getNhom, getSanPham } from "../Controller/ApiController";
+import {
+  getNhom,
+  getProByIdCate,
+  addNhom,
+  getSanPham,
+} from "../Controller/ApiController";
 
 import auth from "../middlewares/auth";
 
@@ -42,6 +47,8 @@ const initWebRoute = (app) => {
   // api buoi 2
 
   app.get("/api/getNhom", getNhom);
+  app.post("/api/addNhom", addNhom);
   app.get("/api/getSanPham", getSanPham);
+  app.get("/api/getSanPham/:idCategory", getProByIdCate);
 };
 export default initWebRoute;

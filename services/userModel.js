@@ -44,6 +44,13 @@ const removeUserModel = async (username) => {
   );
   return row;
 };
+const getUserByUsername = async (username) => {
+  const [row, fields] = await pool.execute(
+    "SELECT * FROM `users` WHERE `username` = ?",
+    [username]
+  );
+  return row;
+};
 
 export default {
   getAllUser,
@@ -51,4 +58,5 @@ export default {
   addUserModel,
   removeUserModel,
   updateUserModel,
+  getUserByUsername,
 };

@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 import { getHomePage } from "../Controller/HomeController";
 import { getAboutPage } from "../Controller/AboutController";
 import { getContactPage } from "../Controller/ContactController";
@@ -10,7 +12,6 @@ import {
   getUpdateUserPage,
   updateUser,
   removeUser,
-  login,
   logout,
 } from "../Controller/UserController";
 import {
@@ -18,6 +19,8 @@ import {
   getProByIdCate,
   addNhom,
   getSanPham,
+  login,
+  getInfoUserJWT,
 } from "../Controller/ApiController";
 
 import auth from "../middlewares/auth";
@@ -28,7 +31,6 @@ const initWebRoute = (app) => {
 
   //login
   app.get("/login", getLoginPage);
-  app.post("/api/login", login);
   app.get("/logout", logout);
   // get page
   app.get("/about", getAboutPage);
@@ -46,9 +48,13 @@ const initWebRoute = (app) => {
 
   // api buoi 2
 
+  app.post("/api/login", login);
+  app.post("/api/logout", logout);
+
   app.get("/api/getNhom", getNhom);
   app.post("/api/addNhom", addNhom);
   app.get("/api/getSanPham", getSanPham);
   app.get("/api/getSanPham/:idCategory", getProByIdCate);
+  app.get("/api/getInfoUserJWT", auth.verifyToken, getInfoUserJWT);
 };
 export default initWebRoute;
